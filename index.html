@@ -3,23 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jucas and Will Getting Married - All You Need Is a Light Jacket!</title>
-    <meta name="description" content="Join us for our wedding in Barcelona, April 25th 2026. A fun weekend of tapas, cheese & wine, and maybe a bit of dancing.">
+    <title>Will & Jucas — Barcelona, April 25th 2026</title>
+    <meta name="description" content="Will & Jucas got married in Barcelona on April 25th, 2026.">
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Jucas and Will Getting Married - All You Need Is a Light Jacket!">
-    <meta property="og:description" content="Join us for our wedding in Barcelona, April 25th 2026. A fun weekend of tapas, cheese & wine, and maybe a bit of dancing.">
-    <meta property="og:image" content="https://allyouneedisalightjacket.com/couple-photo.png">
-    <meta property="og:url" content="https://allyouneedisalightjacket.com/">
+    <meta property="og:title" content="Will & Jucas — Barcelona, April 25th 2026">
+    <meta property="og:description" content="Will & Jucas got married in Barcelona on April 25th, 2026.">
+    <meta property="og:image" content="https://allyouneedisalightjacket.co/photos/thumbs/001.jpg">
+    <meta property="og:url" content="https://allyouneedisalightjacket.co/">
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Jucas and Will Getting Married - All You Need Is a Light Jacket!">
-    <meta name="twitter:description" content="Join us for our wedding in Barcelona, April 25th 2026. A fun weekend of tapas, cheese & wine, and maybe a bit of dancing.">
-    <meta name="twitter:image" content="https://allyouneedisalightjacket.com/couple-photo.png">
-
-    <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -27,96 +19,330 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sorts+Mill+Goudy:ital@0;1&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Sorts Mill Goudy', serif;
+            background-color: #F0E6DE;
+            color: #4A2C2A;
+        }
+
+        header {
+            text-align: center;
+            padding: 48px 20px 36px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: normal;
+            letter-spacing: 0.06em;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            letter-spacing: 0.12em;
+            opacity: 0.75;
+        }
+
+        /* Masonry gallery */
+        .gallery {
+            columns: 3;
+            column-gap: 6px;
+            padding: 0 6px 6px;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 6px;
+            cursor: pointer;
+            overflow: hidden;
+            display: block;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease, opacity 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.02);
+            opacity: 0.92;
+        }
+
+        /* Lazy loading fade-in */
+        .gallery-item img.loading {
+            opacity: 0;
+        }
+
+        .gallery-item img.loaded {
+            opacity: 1;
+        }
+
+        /* Tablet */
+        @media (max-width: 900px) {
+            .gallery {
+                columns: 2;
+            }
+
+            header h1 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 520px) {
+            .gallery {
+                columns: 1;
+                padding: 0 4px 4px;
+                column-gap: 4px;
+            }
+
+            .gallery-item {
+                margin-bottom: 4px;
+            }
+
+            header {
+                padding: 32px 20px 24px;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 8, 7, 0.94);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox-img-wrap {
+            position: relative;
+            max-width: 92vw;
+            max-height: 92vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-img-wrap img {
+            max-width: 92vw;
+            max-height: 92vh;
+            object-fit: contain;
+            display: block;
+        }
+
+        .lb-btn {
+            background: none;
+            border: none;
+            color: #F0E6DE;
+            font-size: 2.8rem;
+            cursor: pointer;
+            padding: 16px 20px;
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.7;
+            transition: opacity 0.2s;
+            font-family: 'Sorts Mill Goudy', serif;
+            line-height: 1;
+            user-select: none;
+            z-index: 10000;
+        }
+
+        .lb-btn:hover {
+            opacity: 1;
+        }
+
+        .lb-prev { left: 8px; }
+        .lb-next { right: 8px; }
+
+        .lb-close {
+            background: none;
+            border: none;
+            color: #F0E6DE;
+            font-size: 2rem;
+            cursor: pointer;
+            position: fixed;
+            top: 16px;
+            right: 20px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+            padding: 8px;
+            z-index: 10000;
+            line-height: 1;
+        }
+
+        .lb-close:hover {
+            opacity: 1;
+        }
+
+        .lb-counter {
+            position: fixed;
+            bottom: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #F0E6DE;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            opacity: 0.5;
+            z-index: 10000;
+        }
+
+        @media (max-width: 520px) {
+            .lb-btn {
+                font-size: 2rem;
+                padding: 12px 14px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <h1>WILL & JUCAS</h1>
-            <h2>BARCELONA</h2>
-            <h3>APRIL 25th</h3>
-            <h4>2026</h4>
-        </header>
+    <header>
+        <h1>WILL &amp; JUCAS</h1>
+        <p>BARCELONA &nbsp;·&nbsp; APRIL 25th, 2026</p>
+    </header>
 
-        <!-- Story Section -->
-        <section class="story-section">
-            <div class="story-image">
-                <img src="couple-photo.png" alt="Will and Jucas" id="couplePhoto">
-            </div>
-            <div class="story-text">
-                <p>7 Years or so ago, we met in an infamous nightspot in Mexico City. Since then we've lived in two cities, seen the world and eaten a heck of a lot of 2x1 pizza.</p>
+    <div class="gallery" id="gallery"></div>
 
-                <p>If you're reading this it's because we'd love you to be at our wedding in April. We realise it might be a long way away from where you live., so if you can't make it, we will definitely see you to raise a glass together somewhere in the world soon!</p>
-
-                <p>But if you can, we'd love you to join us for a fun weekend of tapas, cheese & wine, and maybe a bit of dancing.</p>
-            </div>
-        </section>
-
-        <!-- Details Section -->
-        <section class="details-section">
-            <p><strong>Where:</strong> Somewhere in central Barcelona (most likely in Poble Sec) We will block book some rooms in a nearby hotel, let us know if you're interested in this.</p>
-
-            <p><strong>When:</strong> 25th April, but if you come on Friday 24th we'll also do something on Friday night. The "main event" will be on Saturday. On Sunday we'll find something to do as well - feel free to join for as much or as little as you like. More details to follow nearer the time.</p>
-
-            <p><strong>What:</strong> Barcelona is known for its chilled, informal beach vibes. So it'll be casual!</p>
-        </section>
-
-        <!-- RSVP Section -->
-        <section class="rsvp-section">
-            <h2>RSVP</h2>
-            <form id="rsvpForm">
-                <div class="form-group">
-                    <label for="name">Name(s)</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Phone (optional)</label>
-                    <input type="tel" id="phone" name="phone">
-                </div>
-
-                <div class="form-group radio-group">
-                    <label>
-                        <input type="radio" name="attending" value="yes" required>
-                        Yes I'll come
-                    </label>
-                    <label>
-                        <input type="radio" name="attending" value="no">
-                        No, I can't make it
-                    </label>
-                </div>
-
-                <div class="form-group">
-                    <label for="guests">Number of guests (including you)</label>
-                    <input type="number" id="guests" name="guests" min="1" max="10" value="1">
-                </div>
-
-                <div class="form-group">
-                    <label for="plusOne">Plus one name (if applicable)</label>
-                    <input type="text" id="plusOne" name="plusOne">
-                </div>
-
-                <div class="form-group">
-                    <label for="dietary">Dietary requirements</label>
-                    <input type="text" id="dietary" name="dietary" placeholder="e.g., vegetarian, vegan, allergies">
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Extra note:</label>
-                    <textarea id="message" name="message" rows="4"></textarea>
-                </div>
-
-                <button type="submit">SUBMIT</button>
-            </form>
-        </section>
+    <div class="lightbox" id="lightbox">
+        <button class="lb-close" id="lbClose" aria-label="Close">&#x2715;</button>
+        <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous">&#8249;</button>
+        <div class="lightbox-img-wrap">
+            <img id="lbImg" src="" alt="">
+        </div>
+        <button class="lb-btn lb-next" id="lbNext" aria-label="Next">&#8250;</button>
+        <div class="lb-counter" id="lbCounter"></div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        const BASE_URL = 'https://pub-b13418018baf48e0b7a432eba84f4ca3.r2.dev';
+
+        const TOTAL = 179;
+        const gallery = document.getElementById('gallery');
+        const lightbox = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lbImg');
+        const lbCounter = document.getElementById('lbCounter');
+        let current = 0;
+
+        function pad(n) {
+            return String(n).padStart(3, '0');
+        }
+
+        function photoUrl(path) {
+            return BASE_URL ? `${BASE_URL}/${path}` : path;
+        }
+
+        // Build gallery
+        for (let i = 1; i <= TOTAL; i++) {
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.dataset.index = i;
+
+            const img = document.createElement('img');
+            img.className = 'loading';
+            img.alt = `Will & Jucas wedding photo ${i}`;
+            img.dataset.src = photoUrl(`photos/thumbs/${pad(i)}.jpg`);
+
+            img.onload = () => img.classList.replace('loading', 'loaded');
+            img.onerror = () => item.style.display = 'none';
+
+            item.appendChild(img);
+            item.addEventListener('click', () => openLightbox(i));
+            gallery.appendChild(item);
+        }
+
+        // Lazy load via IntersectionObserver
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target.querySelector('img');
+                    if (img && img.dataset.src) {
+                        img.src = img.dataset.src;
+                        delete img.dataset.src;
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { rootMargin: '200px' });
+
+        document.querySelectorAll('.gallery-item').forEach(item => observer.observe(item));
+
+        // Lightbox
+        function openLightbox(index) {
+            current = index;
+            showPhoto();
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+            lbImg.src = '';
+        }
+
+        function showPhoto() {
+            lbImg.style.opacity = 0;
+            lbImg.src = photoUrl(`photos/${pad(current)}.jpg`);
+            lbImg.onload = () => { lbImg.style.opacity = 1; };
+            lbImg.style.transition = 'opacity 0.25s ease';
+            lbCounter.textContent = `${current} / ${TOTAL}`;
+        }
+
+        function prev() {
+            current = current > 1 ? current - 1 : TOTAL;
+            showPhoto();
+        }
+
+        function next() {
+            current = current < TOTAL ? current + 1 : 1;
+            showPhoto();
+        }
+
+        document.getElementById('lbClose').addEventListener('click', closeLightbox);
+        document.getElementById('lbPrev').addEventListener('click', prev);
+        document.getElementById('lbNext').addEventListener('click', next);
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') prev();
+            if (e.key === 'ArrowRight') next();
+        });
+
+        // Touch swipe
+        let touchStartX = 0;
+        lightbox.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+        lightbox.addEventListener('touchend', (e) => {
+            const dx = e.changedTouches[0].clientX - touchStartX;
+            if (Math.abs(dx) > 50) dx < 0 ? next() : prev();
+        }, { passive: true });
+    </script>
 </body>
 </html>
