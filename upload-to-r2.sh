@@ -20,6 +20,7 @@ upload_file() {
   wrangler r2 object put "${BUCKET}/${r2_key}" \
     --file "${local_path}" \
     --content-type "image/jpeg" \
+    --remote \
     2>/dev/null && echo "  ✓ ${r2_key}" || echo "  ✗ FAILED: ${r2_key}"
 }
 
