@@ -9,7 +9,92 @@ body {
     background-color: #F0E6DE;
     color: #4A2C2A;
     line-height: 1.6;
-    padding: 20px;
+    padding: 0;
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+    background-color: #4A2C2A;
+    color: #F0E6DE;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.nav-title {
+    font-size: 1.5rem;
+    font-weight: normal;
+    letter-spacing: 0.05em;
+}
+
+.burger-menu {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px;
+}
+
+.burger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: #F0E6DE;
+    transition: all 0.3s ease;
+}
+
+.burger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.burger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+.nav-menu {
+    list-style: none;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.nav-menu.active {
+    max-height: 500px;
+}
+
+.nav-menu li {
+    border-top: 1px solid rgba(240, 230, 222, 0.2);
+}
+
+.nav-menu a {
+    display: block;
+    padding: 15px 20px;
+    color: #F0E6DE;
+    text-decoration: none;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    transition: background-color 0.3s ease;
+}
+
+.nav-menu a:hover {
+    background-color: rgba(240, 230, 222, 0.1);
+}
+
+.container {
+    padding: 40px 20px;
 }
 
 .container {

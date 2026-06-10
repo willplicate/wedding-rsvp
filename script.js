@@ -1,3 +1,20 @@
+// Burger menu toggle
+const burgerMenu = document.getElementById('burgerMenu')
+const navMenu = document.getElementById('navMenu')
+
+burgerMenu.addEventListener('click', () => {
+    burgerMenu.classList.toggle('active')
+    navMenu.classList.toggle('active')
+})
+
+// Close menu when clicking on a link
+navMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+        burgerMenu.classList.remove('active')
+        navMenu.classList.remove('active')
+    })
+})
+
 // Supabase configuration
 const SUPABASE_URL = 'https://tdclhoimzksmqmnsaccw.supabase.co'
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRkY2xob2ltemtzbXFtbnNhY2N3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTY2NzAxMjUsImV4cCI6MjA3MjI0NjEyNX0.lkxHRLuT4liiDJWt4AnSk24rFY5E3sceyApZ7kVTGL4'
